@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <!-- 文档字符编码，支持中文 -->
+  <meta charset="UTF-8">
+  <!-- 移动端视口设置，保证手机端正常缩放显示 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- SEO 描述，搜索引擎会读取这段文字 -->
+  <meta name="description" content="个人主页 - GitHub Pages">
+  <!-- 浏览器标签页标题 -->
+  <title>liu491 | 主页</title>
+
+  <!-- 样式相关，AI自动生成 -->
+  <style>
+    /* ========== CSS 变量：统一管理配色，方便后续改主题 ========== */
+    :root {
+      --bg: #0d1117;           /* 页面背景色（深灰黑） */
+      --surface: #161b22;      /* 卡片/区块背景色 */
+      --border: #30363d;       /* 边框颜色 */
+      --text: #e6edf3;         /* 主文字颜色 */
+      --muted: #8b949e;        /* 次要/说明文字颜色 */
+      --accent: #58a6ff;       /* 强调色（链接、标题） */
+      --accent-hover: #79c0ff; /* 鼠标悬停时的强调色 */
+    }
+
+    /* 全局重置：统一盒模型，清除默认边距 */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* 页面主体样式 */
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;       /* 行高，提升可读性 */
+      min-height: 100vh;      /* 至少占满整个视口高度 */
+    }
+
+    /* 内容容器：限制最大宽度并居中 */
+    .container {
+      max-width: 960px;
+      margin: 0 auto;         /* 水平居中 */
+      padding: 2rem 1.5rem 4rem;
+    }
+
+    /* ========== 顶部 Hero 区域 ========== */
+    .hero {
+      text-align: center;
+      padding: 4rem 0 3rem;
+    }
+
+    /* 头像：圆形显示 */
+    .avatar {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;     /* 圆形 */
+      border: 3px solid var(--border);
+      margin-bottom: 1.5rem;
+      object-fit: cover;      /* 裁剪图片以填满容器 */
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    /* Hero 区副标题/简介 */
+    .hero p {
+      color: var(--muted);
+      font-size: 1.125rem;
+      max-width: 480px;
+      margin: 0 auto 1.5rem;  /* 居中并留出下边距 */
+    }
+
+    /* 顶部导航链接容器（GitHub、邮箱等） */
+    .links {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;          /* 小屏幕时自动换行 */
+    }
+
+    .links a {
+      color: var(--accent);
+      text-decoration: none;  /* 去掉下划线 */
+      padding: 0.5rem 1rem;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      transition: border-color 0.2s, color 0.2s; /* 悬停过渡动画 */
+    }
+
+    /* 链接悬停效果 */
+    .links a:hover {
+      color: var(--accent-hover);
+      border-color: var(--accent);
+    }
+
+    /* ========== 通用内容区块（关于、项目等） ========== */
+    section {
+      margin-top: 3rem;
+    }
+
+    section h2 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border); /* 标题下划线分隔 */
+    }
+
+    /* ========== 项目卡片网格布局 ========== */
+    .projects {
+      display: grid;
+      /* 自适应列数：每列最小 280px，自动填充 */
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1rem;
+    }
+
+    /* 单个项目卡片（整张卡片可点击跳转） */
+    .project-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.25rem;
+      text-decoration: none;
+      color: inherit;           /* 继承父级文字颜色，避免链接变蓝 */
+      transition: border-color 0.2s;
+    }
+
+    .project-card:hover {
+      border-color: var(--accent); /* 悬停时高亮边框 */
+    }
+
+    .project-card h3 {
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+      color: var(--accent);
+    }
+
+    .project-card p {
+      font-size: 0.875rem;
+      color: var(--muted);
+    }
+
+    /* 禁用状态样式 */
+    .project-card.disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+        background: #f5f5f5;
+    }
+
+    .project-card.disabled:hover {
+        transform: none;
+        box-shadow: none;
+    }
+
+    /* ========== 页脚 ========== */
+    footer {
+      text-align: center;
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.875rem;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 页面主容器 -->
+  <div class="container">
+
+    <!-- ===== 顶部 Hero：头像、姓名、简介、快捷链接 ===== -->
+    <header class="hero">
+      <!--
+        头像地址格式：https://github.com/你的GitHub用户名.png
+        GitHub 会自动提供公开头像
+      -->
+      <img class="avatar" src="https://github.com/你的用户名.png" alt="头像">
+
+      <h1>liu491</h1>
+      <p>小白一个</p>
+
+      <!-- 外部链接导航 -->
+      <nav class="links">
+        <!-- target="_blank" 新标签页打开；rel="noopener" 提升安全性 -->
+        <a href="https://github.com/liu491" target="_blank" rel="noopener">github主页</a>
+        <!-- mailto: 点击后打开默认邮件客户端 -->
+        <!--
+        <a href="mailto:你的邮箱@example.com">邮箱</a>
+        -->
+        <a href="https://github.com/liu491" target="_blank" rel="noopener">其他1</a>
+
+        <!-- 可继续添加：博客、Twitter、LinkedIn 等 -->
+      </nav>
+    </header>
+
+    <!-- ===== 关于 ===== -->
+    <section>
+      <h2>关于</h2>
+      <p>正在学习HTML、CSS、JavaScript、C#</p>
+    </section>
+
+    <!-- ===== 项目展示 ===== -->
+    <section>
+      <h2>HTML项目</h2>
+      <div class="projects">
+          <!-- 每个项目是一个可点击的卡片，href 指向 GitHub 仓库 -->
+          <a class="project-card" href="https://liu491.github.io/html-project1/" target="_blank" rel="noopener">
+            <h3>扫雷小游戏</h3>
+            <p>测试中</p>
+          </a>
+
+          <a class="project-card disabled" target="_blank" rel="noopener">
+            <h3>五子棋小游戏</h3>
+            <p>未开始</p>
+          </a>
+
+          <a class="project-card disabled" target="_blank" rel="noopener">
+            <h3>贪吃蛇小游戏</h3>
+            <p>未开始</p>
+          </a>
+
+          <a class="project-card disabled" target="_blank" rel="noopener">
+            <h3>简易仓库管理系统</h3>
+            <p>未开始</p>
+          </a>
+
+          <a class="project-card disabled" target="_blank" rel="noopener">
+            <h3>简易拍卖系统</h3>
+            <p>仿拍卖之王，未开始</p>
+          </a>
+
+          <!-- 复制上面的 project-card 块即可添加更多项目 -->
+      </div>
+
+    </section>
+    <section>
+      <h2>C#项目</h2>
+      <div class="projects">
+        <!-- 每个项目是一个可点击的卡片，href 指向 GitHub 仓库 -->
+        <a class="project-card disabled" target="_blank" rel="noopener">
+          <h3>简易计算器</h3>
+          <p>未开始</p>
+        </a>
+
+        <a class="project-card disabled" target="_blank" rel="noopener">
+          <h3>串口通信软件</h3>
+          <p>未开始  预计modbus,tcp通信</p>
+        </a>
+
+      </div>
+
+    </section>
+
+    <!-- ===== 页脚版权信息 ===== -->
+    <footer>
+      <p>© 2026 liu491 · 由 GitHub Pages 托管</p>
+    </footer>
+
+  </div>
+</body>
+</html>
