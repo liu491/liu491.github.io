@@ -1,2 +1,2 @@
-github主页面
-目前是使用ai自动生成的扫雷游戏
+github主页面，已发布
+https://liu491.github.io/
